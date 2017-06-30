@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170630054527) do
+ActiveRecord::Schema.define(version: 20170630060319) do
 
   create_table "details", force: :cascade do |t|
     t.string   "kind"
@@ -19,6 +19,16 @@ ActiveRecord::Schema.define(version: 20170630054527) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "groupings", force: :cascade do |t|
+    t.integer  "detail_id"
+    t.integer  "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "groupings", ["detail_id"], name: "index_groupings_on_detail_id"
+  add_index "groupings", ["item_id"], name: "index_groupings_on_item_id"
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
