@@ -5,6 +5,12 @@
       <%= f.label :name %><br />
       <%= f.text_field :name %>
     </div>
+    <p>
+      <%= f.fields_for :groupings do |group_form| %>
+        <%= group_form.label :detail_id %>
+        <%= collection_select(:group_form, :detail_id, Detail.all, :id, :name) %>
+      <% end %>
+    </p>
     <%= f.submit "Save" %>
   <% end %>
 </div>

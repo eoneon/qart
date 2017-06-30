@@ -9,7 +9,7 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    # @item.groupings.build
+    @groupings = @item.groupings.build
   end
 
   def create
@@ -24,9 +24,9 @@ class ItemsController < ApplicationController
     end
   end
 
-  # private
+  private
 
-  # def item_params
-  #   params.require(:item).permit(:name, groupings_attributes: [:description_id])
-  # end
+  def item_params
+    params.require(:item).permit(:name, groupings_attributes: [:id, :detail_id])
+  end
 end
