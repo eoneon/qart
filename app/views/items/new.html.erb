@@ -1,16 +1,20 @@
 <h1>New Item</h1>
 <div>
   <%= form_for @item do |f| %>
+
     <div class="field">
       <%= f.label :name %><br />
       <%= f.text_field :name %>
     </div>
-    <p>
-      <%= f.fields_for :groupings do |group_form| %>
-        <%= group_form.label :detail_id %>
-        <%= collection_select(:group_form, :detail_id, Detail.all, :id, :name) %>
-      <% end %>
-    </p>
+
+    <div class="field">
+      <%#= hidden_field_tag "item[detail_ids][]", nil %>
+      <%= f.collection_check_boxes :detail_ids, Detail.all, :id, :name %><br>
+      <%# Detail.all.each do |detail| %>
+        <%#= check_box_tag "item[detail_ids][]", detail.id %>
+        <%#= detail.name %>
+      <%# end %>
+    </div>
     <%= f.submit "Save" %>
   <% end %>
 </div>
